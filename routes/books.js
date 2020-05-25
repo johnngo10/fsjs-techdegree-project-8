@@ -17,24 +17,35 @@ function asyncHandler(cb) {
 router.get(
   "/",
   asyncHandler(async (req, res) => {
-    const books = await Book.findAll({ order: [["createdAt", "DESC"]] });
-    res.render("");
+    // const books = await Book.findAll({ order: [["createdAt", "DESC"]] });
+    res.render("index", { title: "Library Manager" });
   })
 );
 
 // Create a new book form
 router.get("/new", (req, res) => {
-  res.render("books/new", { book: {}, title: "New Book" });
+  res.render("new-book", { book: {}, title: "New Book" });
 });
 
 // POST create book
-router.post("/new");
+router.post(
+  "/new",
+  asyncHandler(async (req, res) => {
+    // const book = await Book.create();
+    console.log(req.body);
+    res.redirect("/");
+  })
+);
 
 // Shows book detail form
-router.get("/:id");
+router.get("/:id", (req, res) => {
+  res.render("update-book");
+});
 
 // Updates book info into the database
 router.post("/:id");
 
 // Deletes book
 router.post(":/id/delete");
+
+module.exports = router;

@@ -18,6 +18,7 @@ module.exports = (sequelize) => {
       },
       author: {
         type: Sequelize.STRING,
+        allowNull: false,
         validate: {
           notNull: {
             msg: "Please provide a value for author",
