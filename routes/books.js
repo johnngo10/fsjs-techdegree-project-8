@@ -17,8 +17,8 @@ function asyncHandler(cb) {
 router.get(
   "/",
   asyncHandler(async (req, res) => {
-    // const books = await Book.findAll({ order: [["createdAt", "DESC"]] });
-    res.render("index", { title: "Library Manager" });
+    const books = await Book.findAll({ order: [["createdAt", "DESC"]] });
+    res.render("index", { books });
   })
 );
 
@@ -31,19 +31,29 @@ router.get("/new", (req, res) => {
 router.post(
   "/new",
   asyncHandler(async (req, res) => {
-    // const book = await Book.create();
-    console.log(req.body);
-    res.redirect("/");
+    const book = await Book.create(req.body);
+    res.redirect("/books/" + book.id);
   })
 );
 
 // Shows book detail form
-router.get("/:id", (req, res) => {
-  res.render("update-book");
-});
+router.get(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const book = await Book.findByPk(req.params.id);
+    res.render("update-book", { book });
+  })
+);
 
 // Updates book info into the database
-router.post("/:id");
+router.post(
+  "/:id",
+  asyncHandler(async (req, res) => {
+    const book = await Book.findByPk(req.params.id);
+    await book.update(req.body);
+    res.redirect("/books/" + book.id);
+  })
+);
 
 // Deletes book
 router.post(":/id/delete");
