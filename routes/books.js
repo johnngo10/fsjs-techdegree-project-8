@@ -32,7 +32,7 @@ router.post(
   "/new",
   asyncHandler(async (req, res) => {
     const book = await Book.create(req.body);
-    res.redirect("/books/" + book.id);
+    res.redirect("/books");
   })
 );
 
@@ -56,6 +56,13 @@ router.post(
 );
 
 // Deletes book
-router.post(":/id/delete");
+router.post(
+  "/:id/delete",
+  asyncHandler(async (req, res) => {
+    const book = await Book.findByPk(req.params.id);
+    await book.destroy();
+    res.redirect("/books");
+  })
+);
 
 module.exports = router;
