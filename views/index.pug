@@ -2,8 +2,12 @@ extends layout
 
 block content
   h1 Books
-  p
-    a(class="button" href="/books/new") Create New Book
+  div.booklist_buttons
+    p#create_button
+      a(class="button" href="/books/new") Create New Book
+    div.search_feature
+      input(type="text" class="search_bar" placeholder="Search Book")
+      button(type="button" class="search_button") Search
   table
     thread
       tr
