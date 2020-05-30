@@ -46,14 +46,15 @@ form {
 
 .search_feature {
   margin-bottom: 20px;
+  margin-left: 80px;
 }
 
 .search_bar {
   width: 200px;
 }
 
-.search_button {
-  padding: 12px 30px 11px 30px;
+#search_button {
+  padding: 12px 25px 12px 25px;
   font-size: 14px;
   font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
   border-radius: 2px;
@@ -90,7 +91,7 @@ input[type="submit"] {
 
 form a.button,
 input[type="submit"] {
-  margin-left: 140px;
+  /* margin-left: 140px; */
   transition: 0.4s;
 }
 
