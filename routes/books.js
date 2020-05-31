@@ -20,7 +20,11 @@ function asyncHandler(cb) {
 router.get(
   "/",
   asyncHandler(async (req, res) => {
-    const books = await Book.findAll({ order: [["createdAt", "DESC"]] });
+    const books = await Book.findAll({
+      offset: 0,
+      // limit: 20,
+      order: [["createdAt", "DESC"]],
+    });
     res.render("index", { books });
   })
 );

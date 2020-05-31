@@ -63,6 +63,24 @@ form {
   color: white;
 }
 
+.pagination_buttons {
+  margin: 40px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.prev_button,
+.next_button {
+  padding: 8px 15px 8px 15px;
+  font-size: 14px;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  border-radius: 2px;
+  background: #019875;
+  cursor: pointer;
+  color: white;
+  border: none;
+}
+
 h1 {
   text-align: center;
 }
