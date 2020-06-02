@@ -10,8 +10,7 @@ function asyncHandler(cb) {
     try {
       await cb(req, res, next);
     } catch (error) {
-      // res.status(500).send(error);
-      res.render("error");
+      res.status(500).send(error);
     }
   };
 }
@@ -84,7 +83,8 @@ router.get(
     if (book) {
       res.render("update-book", { book });
     } else {
-      res.render("page-not-found");
+      res.status(500);
+      res.render("error");
     }
   })
 );
@@ -100,7 +100,7 @@ router.post(
         await book.update(req.body);
         res.redirect("/books");
       } else {
-        res.render("page-not-found");
+        res.render("error");
       }
     } catch (error) {
       if (error.name === "SequelizeValidationError") {
@@ -121,7 +121,7 @@ router.post(
       await book.destroy();
       res.redirect("/books");
     } else {
-      res.render("page-not-found");
+      res.render("error");
     }
   })
 );
