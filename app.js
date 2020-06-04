@@ -20,7 +20,8 @@ app.use("/books", books);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  next(createError(404));
+  res.status(404);
+  next(res.render("page-not-found"));
 });
 
 app.use((err, req, res, next) => {
@@ -30,7 +31,7 @@ app.use((err, req, res, next) => {
 
   // render error page
   res.status(err.status || 500);
-  res.render("page-not-found");
+  res.render("error");
 });
 
 app.listen(3000, () => {
